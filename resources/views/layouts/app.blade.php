@@ -15,8 +15,6 @@
         @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
-            @include('layouts.navigation')
 
             <!-- Page Heading -->
             @if (isset($header))
@@ -26,11 +24,16 @@
                     </div>
                 </header>
             @endif
+            @include('partials.header');
 
             <!-- Page Content -->
             <main>
+                @yield('content');
                 {{ $slot }}
             </main>
         </div>
     </body>
 </html>
+
+{{-- <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
+            @include('layouts.navigation') --}}
