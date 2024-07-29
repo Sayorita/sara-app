@@ -7,9 +7,11 @@ use App\Models\Noticia;
 
 class NoticiaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $noticias = Noticia::all();
+        //$noticias = Noticia::all();
+        $filters = $request->only(['title','description']);
+        $noticias = Noticia::filter($filters)->paginate(10)->withQueryString();//pega o título e descrição do formulário 
         return view('dashboard', compact('noticias'));
     }
     public function home()

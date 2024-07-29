@@ -25,7 +25,8 @@
             </div>
         @endif
    
-
+    @if ($noticias->count())
+    
     <div class="container">
         <table class="table table-bordered mt-2">
             <tr>
@@ -53,6 +54,13 @@
                 </tr>
             @endforeach
         </table>
+
+        <div class="d-flex justify-content-center mt-3">
+            {{ $noticias->links()}}
+        </div>
+        @else
+        <p>Nenhuma notícia encontrada</p>
+        @endif
     </div>
  </div>
 </x-app-layout>
