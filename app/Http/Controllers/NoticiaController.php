@@ -14,6 +14,12 @@ class NoticiaController extends Controller
         $noticias = Noticia::filter($filters)->paginate(10)->withQueryString();//pega o título e descrição do formulário 
         return view('dashboard', compact('noticias'));
     }
+
+    public function search(Request $request){
+        $query = $request->input('query');
+        $noticias = Noticia::search($query)->get();
+        return view('search-results', compact('noticias'));
+    }
     public function home()
     {
         $noticias = Noticia::all();
@@ -58,9 +64,9 @@ class NoticiaController extends Controller
     public function update(Request $request, Noticia $noticia)
     {
         $request->validate([
-            'titulo'=> 'required|string|max:255',
-            'descricao'=> 'required|string',
-            'arquivo'=> 'required|file|image|mimes:jpeg,png,gif|max:2048',
+            'titulo'=> 'string|max:255',
+            'descricao'=> 'string',
+            'arquivo'=> 'file|image|mimes:jpeg,png,gif|max:2048',
         ]);
 
         $noticia->titulo = $request->titulo;

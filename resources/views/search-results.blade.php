@@ -1,31 +1,12 @@
-@include('layouts.navigation')
-<x-app-layout>
-    
+<x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            {{ __('Dashboard') }}
+        </h2>
+    </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <form action="{{ route('noticias.search')}}" method="GET">
-                        <div>
-                            <input type="text" name="query" placeholder="Busque uma notícia">
-                            <button type="submit" class="mx-3 btn btn-primary">Pesquisar</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="container">
-        <h1>Notícias</h1>
-
-        <a href="{{ route('noticias.create') }}" class="btn btn-primary">Criar notícia</a>
-        @if($message = Session::get('success'))
-            <div class="alert alert-sucess mt-2">
-                {{$message}}
-            </div>
-        @endif
+<x-app-layout title="Resultado da busca">
+    @if ($noticias->isNotEmpty())
+     <h2>Resultados da busca para "{{request('query')}}"</h2>
 
         @if ($noticias->count())
 
@@ -35,7 +16,6 @@
                         <th>ID</th>
                         <th>Título</th>
                         <th>Descrição</th>
-                        <th>URL</th>
                     </tr>
                     @foreach ($noticias as $noticia)
                         <tr>
@@ -56,14 +36,9 @@
                         </tr>
                     @endforeach
                 </table>
-
-                <div class="d-flex justify-content-center mt-3">
-                    {{ $noticias->links()}}
-                </div>
-        @else
-            <p>Nenhuma notícia encontrada</p>
+          @else
+           <h3>Nenhum resultado encontrado para "{{request('query')}}"</h3>
         @endif
         </div>
-    </div>
-
+    @endif
 </x-app-layout>

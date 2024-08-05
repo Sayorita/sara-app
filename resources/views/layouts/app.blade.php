@@ -24,14 +24,18 @@
                     </div>
                 </header>
             @endif
-            @include('partials.header');
+            @include('partials.header')
 
             <!-- Page Content -->
             <main>
-                @yield('content');
+                @yield('content')
                 {{ $slot }}
             </main>
         </div>
+
+        <footer>
+            @include('partials.footer')
+        </footer>
     </body>
 </html>
 

@@ -25,7 +25,7 @@
         </div>
         <div class="form-control">
             <label for="descricao">Descrição</label>
-            <textarea class="form-control" name="decricao" id="descricao">{{$noticia->descricao}}</textarea>
+            <textarea class="form-control" name="descricao" id="descricao">{{$noticia->descricao}}</textarea>
         </div>
         <div class="form-control">
             <label for="arquivo">Arquivo</label>
