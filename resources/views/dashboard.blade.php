@@ -30,13 +30,15 @@
         @if ($noticias->count())
 
             <div class="container">
-                <table class="table table-bordered mt-2">
+                <table class="table table-striped table-bordered mt-2">
+                    <thead class="thead-dark">
                     <tr>
                         <th>ID</th>
                         <th>Título</th>
                         <th>Descrição</th>
                         <th>URL</th>
                     </tr>
+                    </thead>
                     @foreach ($noticias as $noticia)
                         <tr>
                             <td>{{ $noticia->id }}</td>
@@ -44,7 +46,7 @@
                             <td>{{ $noticia->descricao }}</td>
                             <td><a href="{{ $noticia->url}}" target="_blank">{{ $noticia->url }}</a></td>
                             <td>
-                                <a class="btn btn-info" href="{{ route('noticias.show', $noticia->id)}}">Ver</a>
+                                <a class="btn btn-info my-2" href="{{ route('noticias.show', $noticia->id)}}">Ver</a>
                                 <a class="btn btn-primary" href="{{ route('noticias.edit', $noticia->id)}}">Editar</a>
                                 <form action="{{ route('noticias.destroy', $noticia->id)}}" method="POST">
 
